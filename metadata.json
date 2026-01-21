@@ -1,0 +1,8 @@
+{
+  "name": "PAWER PLUS - Ginger Export",
+  "description": "A premium web portal for PAWER PLUS, Yemen's leading ginger export company, featuring AI-assisted inquiries and a modern, responsive interface.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
