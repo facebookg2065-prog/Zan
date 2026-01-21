@@ -1,6 +1,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 
+// Initialization according to the latest guidelines
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
 
 const SYSTEM_INSTRUCTION = `
@@ -18,6 +19,7 @@ Guidelines:
 
 export const getGeminiResponse = async (prompt: string) => {
   try {
+    // Correct call to ai.models.generateContent
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
@@ -26,7 +28,9 @@ export const getGeminiResponse = async (prompt: string) => {
         temperature: 0.7,
       },
     });
-    return response.text;
+    
+    // Direct access to .text property as per guidelines
+    return response.text || "عذراً، لم أستطع الحصول على إجابة حالياً.";
   } catch (error) {
     console.error("Gemini API Error:", error);
     return "عذراً، حدث خطأ أثناء معالجة طلبك. يرجى المحاولة لاحقاً أو الاتصال بنا مباشرة عبر واتساب.";
