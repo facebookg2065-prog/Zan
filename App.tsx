@@ -18,32 +18,32 @@ const App: React.FC = () => {
         <Hero />
         
         {/* Modern Trust Badges */}
-        <div className="bg-white/50 py-10 border-y border-stone-200">
+        <section className="bg-white/50 py-10 border-y border-stone-200" aria-label="مميزات الشركة">
           <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white shadow-sm border border-stone-100">
-              <i className="fas fa-shield-alt text-3xl text-brand-primary"></i>
+              <i className="fas fa-shield-alt text-3xl text-brand-primary" aria-hidden="true"></i>
               <span className="font-bold text-brand-textMain">شهادات معتمدة</span>
             </div>
             <div className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white shadow-sm border border-stone-100">
-              <i className="fas fa-seedling text-3xl text-brand-primary"></i>
+              <i className="fas fa-seedling text-3xl text-brand-primary" aria-hidden="true"></i>
               <span className="font-bold text-brand-textMain">منتج طبيعي 100%</span>
             </div>
             <div className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white shadow-sm border border-stone-100">
-              <i className="fas fa-globe-americas text-3xl text-brand-primary"></i>
+              <i className="fas fa-globe-americas text-3xl text-brand-primary" aria-hidden="true"></i>
               <span className="font-bold text-brand-textMain">توصيل عالمي</span>
             </div>
             <div className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white shadow-sm border border-stone-100">
-              <i className="fas fa-handshake text-3xl text-brand-primary"></i>
+              <i className="fas fa-handshake text-3xl text-brand-primary" aria-hidden="true"></i>
               <span className="font-bold text-brand-textMain">شريك موثوق</span>
             </div>
           </div>
-        </div>
+        </section>
 
         <About />
 
         {/* Action Banner */}
         <section className="gradient-green py-20 text-white text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" aria-hidden="true"></div>
           <div className="max-w-4xl mx-auto px-6 relative z-10">
             <h2 className="text-3xl md:text-5xl font-black mb-6">هل تبحث عن زنجبيل يمني أصلي بكميات تجارية؟</h2>
             <p className="text-xl opacity-90 mb-10 leading-relaxed max-w-2xl mx-auto">
@@ -57,20 +57,20 @@ const App: React.FC = () => {
 
         <Products />
 
-        {/* Privacy Section with New Text */}
-        <section id="privacy" className="py-24 bg-white border-t border-stone-200">
+        {/* Privacy Section with SEO Text */}
+        <section id="privacy" className="py-24 bg-white border-t border-stone-200" aria-labelledby="privacy-title">
            <div className="max-w-4xl mx-auto text-center px-6">
               <div className="w-24 h-24 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-8 text-brand-primary">
-                <i className="fas fa-user-shield text-4xl"></i>
+                <i className="fas fa-user-shield text-4xl" aria-hidden="true"></i>
               </div>
-              <h2 className="text-4xl font-black text-brand-textMain mb-8">سياسة الخصوصية</h2>
+              <h2 id="privacy-title" className="text-4xl font-black text-brand-textMain mb-8">سياسة الخصوصية</h2>
               <div className="space-y-6 text-xl text-brand-textSec leading-relaxed">
                 <p className="font-bold text-brand-textMain">نحترم خصوصيتك ونلتزم بحماية جميع بياناتك الشخصية.</p>
                 <p>
                   تُستخدم المعلومات المقدمة عبر الموقع فقط لأغراض تحسين الخدمة والتواصل مع العملاء، ولا يتم مشاركتها مع أي طرف ثالث دون موافقتك.
                 </p>
                 <p>
-                  كما نضمن تأمين بياناتك باستخدام أحدث التقنيات للحفاظ على سرية معلوماتك.
+                  كما نضمن تأمين بياناتك باستخدام أحدث تقنيات التشفير للحفاظ على سرية معلوماتك التجارية والشخصية.
                 </p>
               </div>
            </div>
@@ -88,7 +88,7 @@ const App: React.FC = () => {
       <GeminiAssistant />
 
       {/* Modern Bottom Navigation (Mobile Only) */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg md:hidden z-[1000] flex justify-around items-center py-4 bottom-nav-shadow border-t border-stone-100 px-4 rounded-t-3xl">
+      <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg md:hidden z-[1000] flex justify-around items-center py-4 shadow-[0_-4px_15px_rgba(0,0,0,0.08)] border-t border-stone-100 px-4 rounded-t-3xl" aria-label="التنقل السريع">
         <a href="#home" className="flex flex-col items-center gap-1 text-brand-textSec hover:text-brand-primary transition-colors">
           <i className="fas fa-home text-xl"></i>
           <span className="text-[10px] font-bold uppercase">الرئيسية</span>
@@ -102,6 +102,7 @@ const App: React.FC = () => {
             href="https://wa.me/qr/UTNZFL6QLTIJG1" 
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب"
             className="w-16 h-16 bg-brand-primary rounded-full shadow-2xl flex items-center justify-center text-white text-3xl border-4 border-brand-earth transform transition-transform active:scale-90"
            >
             <i className="fab fa-whatsapp"></i>
@@ -115,7 +116,7 @@ const App: React.FC = () => {
           <i className="fas fa-envelope text-xl"></i>
           <span className="text-[10px] font-bold uppercase">تواصل</span>
         </a>
-      </div>
+      </nav>
     </div>
   );
 };

@@ -29,7 +29,8 @@ const Contact: React.FC = () => {
 
   const handleSubmitWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    const whatsappURL = `https://wa.me/967778301265?text=${encodeURIComponent(getMessage())}`;
+    // Using the specific QR shortlink provided for maximum reliability
+    const whatsappURL = `https://wa.me/qr/UTNZFL6QLTIJG1?text=${encodeURIComponent(getMessage())}`;
     window.open(whatsappURL, "_blank");
   };
 
@@ -39,10 +40,10 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-brand-earth relative overflow-hidden">
+    <section id="contact" className="py-24 bg-brand-earth relative overflow-hidden" aria-labelledby="contact-title">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-brand-primary mb-6">اتصل بنا / طلب كمية</h2>
+          <h2 id="contact-title" className="text-4xl md:text-5xl font-black text-brand-primary mb-6">اتصل بنا / طلب كمية</h2>
           <p className="text-xl text-brand-textSec max-w-2xl mx-auto leading-relaxed">
             نحن هنا للرد على جميع استفساراتك وطلباتك. يمكنك التواصل معنا عبر الوسائل المباشرة أو ملء النموذج أدناه.
           </p>
@@ -54,32 +55,32 @@ const Contact: React.FC = () => {
             <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-stone-100 text-right">
               <h3 className="text-2xl font-black text-brand-secondary mb-8">معلومات التواصل</h3>
               <div className="space-y-6">
-                <div className="flex items-center gap-5 justify-end">
+                <div className="flex items-center gap-5 justify-end group">
                   <div>
                     <p className="font-bold text-brand-textMain">واتساب مباشر</p>
-                    <a href="https://wa.me/967778301265" target="_blank" rel="noopener noreferrer" className="text-brand-primary text-lg font-black hover:underline">+967 778 301 265</a>
+                    <a href="https://wa.me/qr/UTNZFL6QLTIJG1" target="_blank" rel="noopener noreferrer" className="text-brand-primary text-lg font-black hover:underline">+967 778 301 265</a>
                   </div>
-                  <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 shadow-sm">
+                  <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 shadow-sm group-hover:scale-110 transition-transform">
                     <i className="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-5 justify-end">
+                <div className="flex items-center gap-5 justify-end group">
                   <div>
                     <p className="font-bold text-brand-textMain">البريد الإلكتروني</p>
-                    <a href="mailto:appssaits@gmail.com" className="text-brand-textSec hover:text-brand-primary transition-colors">appssaits@gmail.com</a>
+                    <a href="mailto:appssaits@gmail.com" className="text-brand-textSec hover:text-brand-primary transition-colors font-medium">appssaits@gmail.com</a>
                   </div>
-                  <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 shadow-sm">
+                  <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 shadow-sm group-hover:scale-110 transition-transform">
                     <i className="fas fa-envelope text-2xl" aria-hidden="true"></i>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-5 justify-end">
+                <div className="flex items-center gap-5 justify-end group">
                   <div>
                     <p className="font-bold text-brand-textMain">تليجرام الرسمي</p>
                     <a href="https://t.me/PARONPRO" target="_blank" rel="noopener noreferrer" className="text-sky-500 font-bold hover:underline">@PARONPRO</a>
                   </div>
-                  <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-500 shadow-sm">
+                  <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-500 shadow-sm group-hover:scale-110 transition-transform">
                     <i className="fab fa-telegram-plane text-2xl" aria-hidden="true"></i>
                   </div>
                 </div>
@@ -110,7 +111,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="product" className="text-brand-textMain font-bold mr-2">المنتج</label>
-                  <select id="product" name="product" value={formData.product} onChange={handleChange} className="w-full bg-brand-earth/50 p-4 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none appearance-none" aria-required="true">
+                  <select id="product" name="product" value={formData.product} onChange={handleChange} className="w-full bg-brand-earth/50 p-4 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none appearance-none cursor-pointer" aria-required="true">
                     <option value="">اختر النوع</option>
                     <option value="طازج">زنجبيل طازج</option>
                     <option value="مجفف">زنجبيل مجفف</option>
@@ -126,10 +127,10 @@ const Contact: React.FC = () => {
                   <textarea id="notes" name="notes" value={formData.notes} onChange={handleChange} rows={3} placeholder="أي متطلبات خاصة بخصوص التعبئة أو الشحن..." className="w-full bg-brand-earth/50 p-4 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none resize-none"></textarea>
                 </div>
                 <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                  <button onClick={handleSubmitWhatsApp} aria-label="إرسال الطلب عبر واتساب" className="bg-green-500 hover:bg-green-600 text-white font-black py-5 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3">
+                  <button onClick={handleSubmitWhatsApp} aria-label="إرسال الطلب عبر واتساب" className="bg-green-500 hover:bg-green-600 text-white font-black py-5 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95">
                     <i className="fab fa-whatsapp text-2xl" aria-hidden="true"></i> إرسال عبر واتساب
                   </button>
-                  <button onClick={handleSubmitTelegram} aria-label="تواصل مع المبيعات عبر تليجرام" className="bg-sky-500 hover:bg-sky-600 text-white font-black py-5 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3">
+                  <button onClick={handleSubmitTelegram} aria-label="تواصل مع المبيعات عبر تليجرام" className="bg-sky-500 hover:bg-sky-600 text-white font-black py-5 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95">
                     <i className="fab fa-telegram-plane text-2xl" aria-hidden="true"></i> تواصل عبر تليجرام
                   </button>
                 </div>
