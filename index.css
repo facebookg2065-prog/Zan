@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #4CAF50;
+  --color-brand-hover: #45A049;
+  --color-brand-secondary: #8B5E3C;
+  --color-brand-earth: #F5F0E6;
+  --color-brand-textMain: #333333;
+  --color-brand-textSec: #666666;
+  
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-earth text-brand-textMain;
+    font-family: 'Tajawal', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  .gradient-green {
+    background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+}
+
+section {
+  scroll-margin-top: 100px;
+}

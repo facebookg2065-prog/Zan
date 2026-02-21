@@ -39,11 +39,12 @@ const Products: React.FC = () => {
             <article key={idx} className="bg-brand-earth/30 rounded-[3rem] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all group border border-brand-earth/50 flex flex-col h-full transform hover:-translate-y-2">
               <div className="relative h-72 overflow-hidden">
                 <img 
-                  src={p.img} 
+                  src={p.img || "https://picsum.photos/600/400?seed=ginger"} 
                   alt={`${p.title} يمني عضوي عالي الجودة من باوره بلس`} 
                   loading="lazy"
                   width="600"
                   height="400"
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
