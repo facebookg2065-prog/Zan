@@ -1,8 +1,16 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-// Initialization according to the latest guidelines
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+// Lazy initialization to prevent crash if API key is missing on startup
+let aiInstance: GoogleGenAI | null = null;
+
+const getAIInstance = () => {
+  if (!aiInstance) {
+    const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY || "";
+    aiInstance = new GoogleGenAI({ apiKey });
+  }
+  return aiInstance;
+};
 
 const SYSTEM_INSTRUCTION = `
 You are "PAWER PLUS AI Assistant", an expert in Yemeni ginger agriculture, international export logistics, and spice quality standards. 
@@ -19,7 +27,7 @@ Guidelines:
 
 export const getGeminiResponse = async (prompt: string) => {
   try {
-    // Correct call to ai.models.generateContent
+    const ai = getAIInstance();
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
@@ -29,7 +37,6 @@ export const getGeminiResponse = async (prompt: string) => {
       },
     });
     
-    // Direct access to .text property as per guidelines
     return response.text || "عذراً، لم أستطع الحصول على إجابة حالياً.";
   } catch (error) {
     console.error("Gemini API Error:", error);
