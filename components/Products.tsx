@@ -1,5 +1,7 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ProductSkeleton } from './Skeleton';
 
 const products = [
   {
@@ -23,6 +25,13 @@ const products = [
 ];
 
 const Products: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section id="products" className="py-24 bg-white" aria-labelledby="products-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,38 +44,53 @@ const Products: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {products.map((p, idx) => (
-            <article key={idx} className="bg-brand-earth/30 rounded-[3rem] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all group border border-brand-earth/50 flex flex-col h-full transform hover:-translate-y-2">
-              <div className="relative h-72 overflow-hidden">
-                <img 
-                  src={p.img || "https://picsum.photos/600/400?seed=ginger"} 
-                  alt={`${p.title} يمني عضوي عالي الجودة من باوره بلس`} 
-                  loading="lazy"
-                  width="600"
-                  height="400"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
-                <div className="absolute top-6 right-6 gradient-green text-white text-xs font-black px-4 py-2 rounded-full uppercase tracking-tighter shadow-xl">
-                  {p.badge}
+          {loading ? (
+            <>
+              <ProductSkeleton />
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </>
+          ) : (
+            products.map((p, idx) => (
+              <motion.article 
+                key={idx} 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-brand-earth/30 rounded-[3rem] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all group border border-brand-earth/50 flex flex-col h-full transform hover:-translate-y-2"
+              >
+                <div className="relative h-72 overflow-hidden">
+                  <img 
+                    src={p.img || "https://picsum.photos/600/400?seed=ginger"} 
+                    alt={`${p.title} يمني عضوي عالي الجودة من باوره بلس`} 
+                    loading="lazy"
+                    width="600"
+                    height="400"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
+                  <div className="absolute top-6 right-6 gradient-green text-white text-xs font-black px-4 py-2 rounded-full uppercase tracking-tighter shadow-xl">
+                    {p.badge}
+                  </div>
                 </div>
-              </div>
-              <div className="p-10 flex flex-col flex-grow text-right">
-                <h3 className="text-3xl font-black text-brand-textMain mb-4">{p.title}</h3>
-                <p className="text-brand-textSec text-lg leading-relaxed mb-8 flex-grow">
-                  {p.desc}
-                </p>
-                <a 
-                  href="#contact" 
-                  aria-label={`طلب تسعيرة لمنتج ${p.title}`}
-                  className="w-full bg-white text-brand-primary text-center border-2 border-brand-primary hover:bg-brand-primary hover:text-white font-black py-4 rounded-2xl transition-all shadow-md active:scale-95"
-                >
-                  طلب تسعيرة للمنتج
-                </a>
-              </div>
-            </article>
-          ))}
+                <div className="p-10 flex flex-col flex-grow text-right">
+                  <h3 className="text-3xl font-black text-brand-textMain mb-4">{p.title}</h3>
+                  <p className="text-brand-textSec text-lg leading-relaxed mb-8 flex-grow">
+                    {p.desc}
+                  </p>
+                  <a 
+                    href="#contact" 
+                    aria-label={`طلب تسعيرة لمنتج ${p.title}`}
+                    className="w-full bg-white text-brand-primary text-center border-2 border-brand-primary hover:bg-brand-primary hover:text-white font-black py-4 rounded-2xl transition-all shadow-md active:scale-95"
+                  >
+                    طلب تسعيرة للمنتج
+                  </a>
+                </div>
+              </motion.article>
+            ))
+          )}
         </div>
       </div>
     </section>
